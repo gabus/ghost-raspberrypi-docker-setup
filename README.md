@@ -3,10 +3,10 @@
 Setup Raspberry Pi to run Ghost blog platform and be reachable from outside the local network without opening router ports
 using Cloudflare tunnel for free!
 
-### Flash Raspberry Pi image 64bit into sd card
+## Flash Raspberry Pi image 64bit into sd card
 Use recommended Raspberry Pi Imager https://www.raspberrypi.com/software/
 
-### Install Docker on 64bit Raspberry Pi 
+## Install Docker on 64bit Raspberry Pi 
 https://docs.docker.com/engine/install/debian/
 
 ```bash
@@ -29,14 +29,14 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo docker run hello-world
 ```
 
-### Install portainer (for easy container's management)
+## Install portainer (for easy container's management)
 https://docs.portainer.io/start/install-ce/server/docker/linux
 ```bash
 docker volume create portainer_data
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 ```
 
-### Ghost Docker image (run from portainer stack builder)
+## Ghost Docker image (run from portainer stack builder)
 ```yaml
 version: '3.1'
 
@@ -78,10 +78,10 @@ volumes:
   db:
  ```
 
-### Ghost theme
+## Ghost theme
 https://ghost.org/themes/liebling v2.1.7 + css fixes [code_injection_footer.html](code_injection_footer.html)
 
-### Useful commands
+## Useful commands
 ```bash
 # ssh into Raspberry Pi
 ssh gabe@192.168.1.175
@@ -106,7 +106,7 @@ apt-get update
 apt-get install nano
 ```
 
-### Setup Cloudflare tunnel
+## Setup Cloudflare tunnel
 1. Link your domain to Cloudflare. This will require to change DNS Nameservers at your Domain provider. Just follow Cloudflare instructions
 2. Create Cloudflare tunnel using docker image **Cloudflare -> Zero Trust -> Networks -> Tunnels**
 ![cloudflare-tunnel-setup.png](images/cloudflare-tunnel-setup.png)
@@ -126,9 +126,9 @@ apt-get install nano
 5. Once container is running, comeback to Cloudflare and check if Connector is found. Continue instructions 
 
 
-### Known issues
+## Known issues
 ghost-cli does not work properly. Does not detect already running instances. Cannot start or restart instances 
 due to missing dependencies. Cannot run backup command (because does not see any running Ghost instances)
 
-### Todo
+## Todo
 [] Ghost platform export/backup system is garbage. It does not export images. Find proper solution 
